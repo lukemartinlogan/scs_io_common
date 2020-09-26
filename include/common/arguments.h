@@ -219,6 +219,7 @@ public:
                 return std::make_unique<SizeArg>(opt_name);
             }
         }
+        return nullptr;
     }
     static ArgPtr Get(std::string opt_name, ArgType type, std::string dval) {
         switch(type) {
@@ -226,6 +227,7 @@ public:
                 return std::make_unique<StringArg>(opt_name, dval);
             }
         }
+        return nullptr;
     }
     static ArgPtr Get(std::string opt_name, ArgType type, int dval) {
         switch(type) {
@@ -236,6 +238,7 @@ public:
                 return std::make_unique<IntArg>(opt_name, dval);
             }
         }
+        return nullptr;
     }
     static ArgPtr Get(std::string opt_name, ArgType type, float dval) {
         switch(type) {
@@ -243,6 +246,7 @@ public:
                 return std::make_unique<FloatArg>(opt_name, dval);
             }
         }
+        return nullptr;
     }
     static ArgPtr Get(std::string opt_name, ArgType type, size_t dval) {
         switch(type) {
@@ -250,6 +254,7 @@ public:
                 return std::make_unique<SizeArg>(opt_name, dval);
             }
         }
+        return nullptr;
     }
 };
 
@@ -330,7 +335,7 @@ public:
     std::string &GetStringOpt(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetStringOpt(); }
     std::list<std::string> &GetStringOpts(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetStringOpts(); }
     int GetIntOpt(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetIntOpt(); }
-    std::list<int> &GetIntOpts(std::string opt) { AssertOptIsSet(opt); args_[opt]->GetIntOpts(); }
+    std::list<int> &GetIntOpts(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetIntOpts(); }
     float GetFloatOpt(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetFloatOpt(); }
     std::list<float> &GetFloatOpts(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetFloatOpts(); }
     size_t GetSizeOpt(std::string opt) { AssertOptIsSet(opt); return args_[opt]->GetSizeOpt(); }
